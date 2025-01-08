@@ -1,0 +1,16 @@
+{
+    "name": "iedon-net-netpass",
+    "type": "module",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "prod": "bun netpass.js",
+        "dev": "bun --watch netpass.js"
+    },
+    "dependencies": {
+        "@goauthentik/api": "^2024.10.5-1734524927",
+        "@hono/oidc-auth": "^1.2.0",
+        "hono": "^4.6.14",
+        "resolve-accept-language": "^3.1.10"
+    }
+}
