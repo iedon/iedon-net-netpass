@@ -11,6 +11,10 @@ Something werid PoC to integrate with iEdon-Net, enables changing Wi-Fi password
 - Create API token for `netpwdmgr` and fill `.env`
 - Generally set up OpenID provider in `Authentik` with Subject mode `Based on the User's ID` and application
 
+# Memo
+- Cookie only works under `HTTPS`
+- Using `bun` and `Hono.js`
+
 # Related post
 
 My Wi-Fi EAP Password Authentication: https://iedon.com/2023/12/24/1185.html
