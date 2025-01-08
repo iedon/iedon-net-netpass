@@ -21,11 +21,25 @@ const coreApi = new CoreApi(new Configuration({
 // Middleware setup
 app.use('/static/*', serveStatic({ root: './' }));
 
-// Locale middleware
+// Locale and header middleware
 app.use(async (c, next) => {
-  const al = c.req.query('lang') || c.req.header('Accept-Language');
+
+  if (c.req.path.startsWith('/static/')) return await next();
+
+  const al = (c.req.query('lang') || c.req.header('Accept-Language')) || 'en-US';
   const locale = resolveAcceptLanguage(al, [ 'en-US', 'zh-CN', 'zh-TW', 'ja-JP' ], 'en-US', { returnMatchType: false });
   c.set('_locale', locale);
+
+  const headers = {
+    'X-Content-Type-Options': 'nosniff',
+    'X-Download-Options': 'noopen',
+    'X-Frame-Options': 'SAMEORIGIN',
+    'X-XSS-Protection': '1; mode=block',
+    'Pragma': 'no-cache',
+    'Cache-Control': 'no-store, no-cache'
+  };
+  Object.entries(headers).forEach(([key, value]) => c.header(key, value));
+
   return await next();
 });
 
@@ -146,5 +160,7 @@ app.post('/changePassword', async c => {
 export default {
   hostname: '0.0.0.0',
   port: 8080,
+  certFile: "./cert.crt",
+  keyFile: "./cert.key",
   fetch: app.fetch,
 };

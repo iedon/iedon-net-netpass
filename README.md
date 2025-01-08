@@ -14,6 +14,7 @@ Something werid PoC to integrate with iEdon-Net, enables changing Wi-Fi password
 ## Memo
 - Cookie only works under `HTTPS`
 - Using `bun` and `Hono.js`
+- Must use `HTTP` as `@hono/oidc-auth` uses `c.req.url` which fixes scheme to http while working behind reverse proxy
 
 ## Related post
 
