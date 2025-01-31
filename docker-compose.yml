@@ -1,0 +1,19 @@
+---
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    #ports:
+    #  - "443:443/tcp"
+    networks:
+      dockernet:
+        ipv4_address: 192.168.4.1
+
+networks:
+  dockernet:
+    external: true

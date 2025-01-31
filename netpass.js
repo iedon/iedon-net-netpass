@@ -158,9 +158,9 @@ app.post('/changePassword', async c => {
 });
 
 export default {
-  hostname: '0.0.0.0',
-  port: 8080,
-  certFile: "./cert.crt",
-  keyFile: "./cert.key",
+  hostname: process.env.LISTEN_HOSTNAME,
+  port: process.env.LISTEN_PORT,
+  certFile: process.env.TLS_CERT_FILE,
+  keyFile: process.env.TLS_KEY_FILE,
   fetch: app.fetch,
 };
